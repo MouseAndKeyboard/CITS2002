@@ -1,0 +1,372 @@
+#+TITLE: Lab 0
+
+* Tasks
+** [integer arithmetic, basic loop]
+When Australia first adopted decimal currency in 1966, coins had the denominations of 1c, 2c, 5c, 10c, 20c, and (a round!) 50c. If a person purchased something valued at $1 or less, and paid with a $1 note (yes), write a program to list the minimum number of coins, and their demoninations, that they should receive as change.
+*** Code
+
+#+NAME: Coins
+#+BEGIN_SRC C :includes <stdio.h> <string.h> <stdlib.h>
+
+int main() {
+
+    int paid_with = 100;
+    int price = 70;
+    int change = paid_with - price;
+
+    int coins[6] = {0,0,0,0,0,0};
+
+    while (change > 0) {
+        if (change >= 50)
+        {
+            change -= 50;
+            coins[5]++;
+        }
+        else if (change >= 20)
+        {
+            change -= 20;
+            coins[4]++;
+        }
+        else if (change >= 10)
+        {
+            change -= 10;
+             coins[3]++;
+        }
+        else if (change >= 5)
+        {
+            change -= 5;
+            coins[2]++;
+        }
+        else if (change >= 2)
+        {
+            change -= 2;
+            coins[1]++;
+        }
+        else if (change >= 1)
+        {
+            change -= 1;
+            coins[0]++;
+        }
+        else
+        {
+            change = 0;
+        }
+    }
+
+    printf("%s %s %s %s %s %s\n", "1", "2", "5", "10", "20", "50");
+    for (int i = 0; i < 6; i++)
+    {
+        printf("%i ", coins[i]);
+    }
+    return 0;
+}
+#+END_SRC
+
+#+CALL: Coins() :colnames yes
+
+#+RESULTS:
+| 1 | 2 | 5 | 10 | 20 | 50 |
+| 0 | 0 | 0 |  1 |  1 |  0 |
+
+** [calling external function]
+Using your chosen programming language, write a short program to print out today's date and time (example output: Wed Jul 29 08:19:34 2020). The actual format is unimportant.
+*** Code
+
+#+BEGIN_SRC C :includes <stdio.h> <time.h>
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+int main()
+{
+    time_t t = time(NULL);
+    struct tm *tm = localtime(&t);
+    printf("%s", asctime(tm));
+    return EXIT_SUCCESS;
+}
+#+END_SRC
+
+#+RESULTS:
+: Fri Jul 31 12:51:41 2020
+
+** [floating-point numbers]
+In Lecture-2 we saw how some (in fact, most) floating-point values cannot be represented exactly on contemporary computers and, so, we must use them with great caution, or not at all. In your chosen programming language, repeat the exercise from Lecture-2, displaying sufficient decimal-points to 'expose' the problem.
+
+*** Code
+#+BEGIN_SRC C
+#include <stdlib.h>
+#include <stdio.h>
+
+int main()
+{
+    float f;
+    for (f = 0.0; f != 10; f += 0.1)
+    {
+        printf("%.10f\n", f);
+        if (f > 20) return EXIT_SUCCESS;
+    }
+
+    return EXIT_SUCCESS;
+}
+#+END_SRC
+
+#+RESULTS:
+|           0.0 |
+|  0.1000000015 |
+|   0.200000003 |
+|  0.3000000119 |
+|   0.400000006 |
+|           0.5 |
+|  0.6000000238 |
+|  0.7000000477 |
+|  0.8000000715 |
+|  0.9000000954 |
+|  1.0000001192 |
+|  1.1000001431 |
+|  1.2000001669 |
+|  1.3000001907 |
+|  1.4000002146 |
+|  1.5000002384 |
+|  1.6000002623 |
+|  1.7000002861 |
+|  1.8000003099 |
+|  1.9000003338 |
+|  2.0000002384 |
+|  2.1000001431 |
+|  2.2000000477 |
+|  2.2999999523 |
+|  2.3999998569 |
+|  2.4999997616 |
+|  2.5999996662 |
+|  2.6999995708 |
+|  2.7999994755 |
+|  2.8999993801 |
+|  2.9999992847 |
+|  3.0999991894 |
+|   3.199999094 |
+|  3.2999989986 |
+|  3.3999989033 |
+|  3.4999988079 |
+|  3.5999987125 |
+|  3.6999986172 |
+|  3.7999985218 |
+|  3.8999984264 |
+|  3.9999983311 |
+|  4.0999984741 |
+|  4.1999983788 |
+|  4.2999982834 |
+|   4.399998188 |
+|  4.4999980927 |
+|  4.5999979973 |
+|  4.6999979019 |
+|  4.7999978065 |
+|  4.8999977112 |
+|  4.9999976158 |
+|  5.0999975204 |
+|  5.1999974251 |
+|  5.2999973297 |
+|  5.3999972343 |
+|   5.499997139 |
+|  5.5999970436 |
+|  5.6999969482 |
+|  5.7999968529 |
+|  5.8999967575 |
+|  5.9999966621 |
+|  6.0999965668 |
+|  6.1999964714 |
+|   6.299996376 |
+|  6.3999962807 |
+|  6.4999961853 |
+|  6.5999960899 |
+|  6.6999959946 |
+|  6.7999958992 |
+|  6.8999958038 |
+|  6.9999957085 |
+|  7.0999956131 |
+|  7.1999955177 |
+|  7.2999954224 |
+|   7.399995327 |
+|  7.4999952316 |
+|  7.5999951363 |
+|  7.6999950409 |
+|  7.7999949455 |
+|  7.8999948502 |
+|  7.9999947548 |
+|  8.0999946594 |
+|  8.1999950409 |
+|  8.2999954224 |
+|  8.3999958038 |
+|  8.4999961853 |
+|  8.5999965668 |
+|  8.6999969482 |
+|  8.7999973297 |
+|  8.8999977112 |
+|  8.9999980927 |
+|  9.0999984741 |
+|  9.1999988556 |
+|  9.2999992371 |
+|  9.3999996185 |
+|           9.5 |
+|  9.6000003815 |
+|  9.7000007629 |
+|  9.8000011444 |
+|  9.9000015259 |
+| 10.0000019073 |
+| 10.1000022888 |
+| 10.2000026703 |
+| 10.3000030518 |
+| 10.4000034332 |
+| 10.5000038147 |
+| 10.6000041962 |
+| 10.7000045776 |
+| 10.8000049591 |
+| 10.9000053406 |
+|  11.000005722 |
+| 11.1000061035 |
+|  11.200006485 |
+| 11.3000068665 |
+| 11.4000072479 |
+| 11.5000076294 |
+| 11.6000080109 |
+| 11.7000083923 |
+| 11.8000087738 |
+| 11.9000091553 |
+| 12.0000095367 |
+| 12.1000099182 |
+| 12.2000102997 |
+| 12.3000106812 |
+| 12.4000110626 |
+| 12.5000114441 |
+| 12.6000118256 |
+|  12.700012207 |
+| 12.8000125885 |
+|   12.90001297 |
+| 13.0000133514 |
+| 13.1000137329 |
+| 13.2000141144 |
+| 13.3000144958 |
+| 13.4000148773 |
+| 13.5000152588 |
+| 13.6000156403 |
+| 13.7000160217 |
+| 13.8000164032 |
+| 13.9000167847 |
+| 14.0000171661 |
+| 14.1000175476 |
+| 14.2000179291 |
+| 14.3000183105 |
+|  14.400018692 |
+| 14.5000190735 |
+|  14.600019455 |
+| 14.7000198364 |
+| 14.8000202179 |
+| 14.9000205994 |
+| 15.0000209808 |
+| 15.1000213623 |
+| 15.2000217438 |
+| 15.3000221252 |
+| 15.4000225067 |
+| 15.5000228882 |
+| 15.6000232697 |
+| 15.7000236511 |
+| 15.8000240326 |
+| 15.9000244141 |
+| 16.0000247955 |
+|  16.100025177 |
+| 16.2000255585 |
+| 16.3000259399 |
+| 16.4000263214 |
+| 16.5000267029 |
+| 16.6000270844 |
+| 16.7000274658 |
+| 16.8000278473 |
+| 16.9000282288 |
+| 17.0000286102 |
+| 17.1000289917 |
+| 17.2000293732 |
+| 17.3000297546 |
+| 17.4000301361 |
+| 17.5000305176 |
+|  17.600030899 |
+| 17.7000312805 |
+|  17.800031662 |
+| 17.9000320435 |
+| 18.0000324249 |
+| 18.1000328064 |
+| 18.2000331879 |
+| 18.3000335693 |
+| 18.4000339508 |
+| 18.5000343323 |
+| 18.6000347137 |
+| 18.7000350952 |
+| 18.8000354767 |
+| 18.9000358582 |
+| 19.0000362396 |
+| 19.1000366211 |
+| 19.2000370026 |
+|  19.300037384 |
+| 19.4000377655 |
+|  19.500038147 |
+| 19.6000385284 |
+| 19.7000389099 |
+| 19.8000392914 |
+| 19.9000396729 |
+| 20.0000400543 |
+
+** [integer arithmetic, 1D array]
+Revise (or learn) how to generate a non-negative random integer in your chosen programming language. Saturday Lotto involves drawing 6 unique numbers, between 1 and 45. Write a simple program to choose and display your 6 lucky numbers.
+*** Code
+#+BEGIN_SRC C :includes <stdio.h> <time.h>
+srand(time(0));
+
+for (int i = 0; i < 6; i++)
+{
+    printf("%i ", rand() % 46);
+}
+#+END_SRC
+
+#+RESULTS:
+: 32 7 12 21 24 20
+
+** [2D array, nested loop]
+Fill a 2D array of, say, 10x20 integers with non-negative random integers. Without using your language's builtin/standard sort() method/function, print out the second largest value in the array.
+*** Code
+#+BEGIN_SRC C
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main()
+{
+    int rows = 10;
+    int cols = 20;
+    int matrix[rows][cols];
+
+    // fill the matrix with random values
+    for (int row = 0; row < rows; row++)
+    {
+        for (int col = 0; col < cols; col++)
+        {
+            matrix[row][col] = rand();
+        }
+    }
+
+    // Find the largest value in the array
+    int largest = -1;
+    for (int row = 0; row < rows; row++)
+    {
+        for (int col = 0; col < cols; col++)
+        {
+            if (matrix[row][col] > largest)
+                largest = matrix[row][col];
+        }
+    }
+
+
+
+    printf("%i\n", largest);
+}
+#+END_SRC
+
+#+RESULTS:
+: 2147469841
