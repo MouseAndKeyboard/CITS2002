@@ -331,11 +331,7 @@ for (int i = 0; i < 6; i++)
 ** [2D array, nested loop]
 Fill a 2D array of, say, 10x20 integers with non-negative random integers. Without using your language's builtin/standard sort() method/function, print out the second largest value in the array.
 *** Code
-#+BEGIN_SRC C
-#include <stdio.h>
-#include <stdlib.h>
-
-
+#+BEGIN_SRC C :includes <stdio.h> <stdlib.h>
 int main()
 {
     int rows = 10;
@@ -353,31 +349,24 @@ int main()
 
     // Find the largest value in the array
     int largest = -1;
-    for (int row = 0; row < rows; row++)
-    {
-        for (int col = 0; col < cols; col++)
-        {
-            if (matrix[row][col] > largest)
-                largest = matrix[row][col];
-        }
-    }
-
-    // Find the second largest value in the array
     int secondLargest = -1;
     for (int row = 0; row < rows; row++)
     {
         for (int col = 0; col < cols; col++)
         {
-            if (matrix[row][col] > secondLargest && matrix[row][col] < largest)
-                secondLargest = matrix[row][col];
+            if (matrix[row][col] > largest)
+            {
+                secondLargest = largest;
+                largest = matrix[row][col];
+            }
         }
     }
 
-    printf("%i\n", largest);
     printf("%i\n", secondLargest);
 }
 #+END_SRC
 
 #+RESULTS:
+| 2145174067 |
 | 2147469841 |
 | 2145174067 |
