@@ -1,0 +1,14 @@
+#+TITLE: Tasks
+
+* [Ceasar-Cipher]
+Modify the program to perform rot-3, rotation by 3 characters (or the traditional Caesar-cipher).
+
+    Extend the program to print out each character of the ciphered text one per line instead of all the characters on one line.
+
+    Extend the program to print out on each line not only the ciphered character, but also the original character too.
+
+    Extend the program to print out on each line not only the original and ciphered characters, but also the "position" of the character in the text.
+
+    Extend the program to handle both upper-case and lower-case letters.
+
+    The program rotate.c requires 4 C-preprocessor #include directives to read the declarations of some standard C functions from C header files. Remove (and eventually replace) each #include line, in turn, to determine which required functions are declared in each file.
