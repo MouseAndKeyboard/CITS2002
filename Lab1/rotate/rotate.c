@@ -18,7 +18,7 @@ char rotate(char c) {
     // allowing for wrap-around
     return ('a' + (c - 'a' + ROT) % 26);
   } else {
-    return c;
+    return ('A' + (c - 'A' + ROT) % 26);
   }
 }
 
