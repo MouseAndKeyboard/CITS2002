@@ -60,9 +60,21 @@ int main(int argcount, char *argvalue[]) {
         continue;
       }
 
+      FILE *fp = fopen(argvalue[arg], "r+");
+      // fopen returns null if no file exists
+      if (fp) {
+        int c;
+        int i = 0;
+        while (!feof(fp)) {
+          c = fgetc(fp);
+          printf("[%i] %c -> %c\n", i, c, rotate(c, rot));
+          i++;
+        }
+        continue;
+      }
+
       // Loop for every character in the text
       for (i = 0; i < length; i++) {
-
         // Determine and print the ciphered character
         printf("[%i] %c -> %c\n", i, argvalue[arg][i],
                rotate(argvalue[arg][i], rot));
