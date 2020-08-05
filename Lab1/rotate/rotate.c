@@ -61,14 +61,14 @@ int main(int argcount, char *argvalue[]) {
       }
 
       FILE *fp = fopen(argvalue[arg], "r+");
+      int j = 0;
       // fopen returns null if no file exists
       if (fp) {
         int c;
-        int i = 0;
-        while (!feof(fp)) {
-          c = fgetc(fp);
-          printf("[%i] %c -> %c\n", i, c, rotate(c, rot));
-          i++;
+
+        while ((c = fgetc(fp)) != EOF && c != '\n') {
+          printf("[%i] %c -> %c\n", j, c, rotate(c, rot));
+          j++;
         }
         continue;
       }
