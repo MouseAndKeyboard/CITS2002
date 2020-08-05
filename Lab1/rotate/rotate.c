@@ -36,20 +36,24 @@ int main(int argcount, char *argvalue[]) {
         argvalue[0], argcount - 1);
     exit(EXIT_FAILURE);
   } else {
-    // Define a variable for a later loop
-    int i;
-    // Calculate the length of the first argument
-    int length = strlen(argvalue[1]);
+    int arg;
+    // Loop through every argument
+    for (arg = 1; arg < argcount; arg++) {
+      // Define a variable for a later loop
+      int i;
+      // Calculate the length of the first argument
+      int length = strlen(argvalue[arg]);
 
-    // Loop for every character in the text
-    for (i = 0; i < length; i++) {
-      // Determine and print the ciphered character
-      printf("[%i] %c -> %c\n", i, argvalue[1][i], rotate(argvalue[1][i]));
+      // Loop for every character in the text
+      for (i = 0; i < length; i++) {
+        // Determine and print the ciphered character
+        printf("[%i] %c -> %c\n", i, argvalue[arg][i],
+               rotate(argvalue[arg][i]));
+      }
+
+      // Print one final new-line character
+      printf("\n");
     }
-
-    // Print one final new-line character
-    printf("\n");
-
     // Exit indicating success
     exit(EXIT_SUCCESS);
   }
