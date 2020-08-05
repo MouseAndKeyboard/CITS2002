@@ -54,8 +54,15 @@ int main(int argcount, char *argvalue[]) {
       // Calculate the length of the first argument
       int length = strlen(argvalue[arg]);
 
+      int temp_rot = atoi(argvalue[arg]);
+      if (temp_rot != 0) {
+        rot = temp_rot;
+        continue;
+      }
+
       // Loop for every character in the text
       for (i = 0; i < length; i++) {
+
         // Determine and print the ciphered character
         printf("[%i] %c -> %c\n", i, argvalue[arg][i],
                rotate(argvalue[arg][i], rot));
