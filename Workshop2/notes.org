@@ -1,0 +1,29 @@
+#+TITLE: Notes
+
+* myCal
+Linux has the
+#+BEGIN_SRC bash
+cal
+#+END_SRC
+
+#+RESULTS:
+| August | 2020 |    |    |     |      |    |   |
+|     Su |   Mo | Tu | We |  Th |   Fr | Sa |   |
+|      1 |      |    |    |     |      |    |   |
+|      2 |    3 |  4 |  5 | _ | _6 |  7 | 8 |
+|      9 |   10 | 11 | 12 |  13 |   14 | 15 |   |
+|     16 |   17 | 18 | 19 |  20 |   21 | 22 |   |
+|     23 |   24 | 25 | 26 |  27 |   28 | 29 |   |
+|     30 |   31 |    |    |     |      |    |   |
+
+command.
+
+We should create our own version "myCal".
+
+
+** Development notes
+1. Get the time
+2. Get number of days in the month
+   1. Check for leap years
+3. Get what day the month starts on
+4. Render the table
