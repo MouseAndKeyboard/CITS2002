@@ -47,11 +47,17 @@ void print_month_cal(struct tm *tim) {
   int current_year = tim->tm_year + 1900;
   int current_month = tim->tm_mon + 1;
   int days = days_in_month(current_month, current_year);
-  printf("%i days this month\n", days);
   for (int day = 1; day <= days; day++) {
-    printf("| %i ", day);
+    if (day < 10) {
+      printf("|  %i ", day);
+    } else {
+
+      printf("| %i ", day);
+    }
+
     if (0 == day % 7) {
       printf("|\n");
     }
   }
+  printf("|\n");
 }
