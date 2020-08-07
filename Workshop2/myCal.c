@@ -83,6 +83,12 @@ void print_month_cal(struct tm *tim) {
   int current_year = tim->tm_year + 1900;
   int current_month = tim->tm_mon + 1;
 
+  int starting_dow = dow(1, current_month, current_year);
+
+  for (int i = 0; i < starting_dow; i++) {
+    printf("   ");
+  }
+
   int days = days_in_month(current_month, current_year);
   for (int day = 1; day <= days; day++) {
 
@@ -100,7 +106,7 @@ void print_month_cal(struct tm *tim) {
     printf("\033[0m ");
 
     // Ensure it wraps around every 7 days
-    if (day % 7 == 0) {
+    if (dow(day, current_month, current_year) == 6) {
       printf("\n");
     }
   }
