@@ -48,6 +48,11 @@ void print_month_cal(struct tm *tim) {
   int current_month = tim->tm_mon + 1;
   int days = days_in_month(current_month, current_year);
 
+  // print out the current month and year
+  char buff[40];
+  strftime(buff, 40, "    %B %Y", tim);
+  puts(buff);
+
   // print the days of the week
   puts("Su Mo Tu We Th Fr Sa");
 
