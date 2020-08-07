@@ -43,6 +43,33 @@ int days_in_month(int m, int y) {
   }
 }
 
+/* day of week
+ * ---
+ * returns the current day of week (0 = Sun, ..., 6 = Sat)
+ *
+ * parameters
+ * k = current day (1 to 31)
+ * m = month (1 = march, ..., 10 = dec, 11 = jan, 12 = feb)
+ * y = year */
+int dow(int k, int m, int year) {
+  // convert month into correct format
+  m -= 2;
+  if (0 == m) {
+    --year;
+    m = 12;
+  } else if (-1 == m) {
+    --year;
+    m = 11;
+  }
+
+  int y = year % 100;
+  int c = (year - y) / 100;
+
+  return (k + (int)(2.6f * m - 0.2f) - 2 * c + y + (int)(y / 4.0f) +
+          (int)(c / 4.0f)) %
+         7;
+}
+
 void print_month_cal(struct tm *tim) {
   // print out the current month and year
   char buff[40];
