@@ -73,13 +73,20 @@ int dow(int k, int m, int year) {
     m = 11;
   }
 
+  // Get last 2 numbers of year
   int y = year % 100;
+  // Get first 2 numbers of year
   int c = (year - y) / 100;
 
+  // Perform the algorithm to calculate the day of month
+  // https://cs.uwaterloo.ca/~alopez-o/math-faq/node73.html
   return (k + (int)(2.6f * m - 0.2f) - 2 * c + y + (int)(y / 4.0f) +
           (int)(c / 4.0f)) %
          7;
 }
+
+#define N_DAYS_IN_WEEK 7
+#define EPOCH_YEAR 1900
 
 void print_month_cal(struct tm *tim) {
   // print out the current month and year
@@ -91,7 +98,8 @@ void print_month_cal(struct tm *tim) {
   puts("Su Mo Tu We Th Fr Sa");
 
   // Adjusts default tm struct values to be human readable
-  int current_year = tim->tm_year + 1900;
+  int current_year = tim->tm_year + EPOCH_YEAR;
+  // tm_mon is in [0,11] but we want [1, 12].
   int current_month = tim->tm_mon + 1;
 
   int starting_dow = dow(1, current_month, current_year);
@@ -117,7 +125,7 @@ void print_month_cal(struct tm *tim) {
     printf("\033[0m ");
 
     // Ensure it wraps around every 7 days
-    if (dow(day, current_month, current_year) == 6) {
+    if (dow(day, current_month, current_year) == N_DAYS_IN_WEEK - 1) {
       printf("\n");
     }
   }
