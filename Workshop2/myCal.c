@@ -47,17 +47,23 @@ void print_month_cal(struct tm *tim) {
   int current_year = tim->tm_year + 1900;
   int current_month = tim->tm_mon + 1;
   int days = days_in_month(current_month, current_year);
-  for (int day = 1; day <= days; day++) {
-    if (day < 10) {
-      printf("|  %i ", day);
-    } else {
 
-      printf("| %i ", day);
+  // print the days of the week
+  puts("Su Mo Tu We Th Fr Sa");
+
+  for (int day = 1; day <= days; day++) {
+
+    // Add space padding to single numerals
+    if (day < 10) {
+      printf(" %i ", day);
+    } else {
+      printf("%i ", day);
     }
 
-    if (0 == day % 7) {
-      printf("|\n");
+    // Ensure it wraps around every 7 days
+    if (day % 7 == 0) {
+      printf("\n");
     }
   }
-  printf("|\n");
+  printf("\n");
 }
