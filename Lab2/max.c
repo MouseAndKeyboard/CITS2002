@@ -11,14 +11,17 @@ void error(const char *msg) {
 int max(int a, int b) { return (a >= b) * a + (a < b) * b; }
 
 int main(int argc, char *argv[]) {
-  if (argc != 4) {
-    error("Expected 3 arguments");
+  if (argc < 3) {
+    error("Expected at least 2 arguments");
   }
 
   int a = atoi(argv[1]);
   int b = atoi(argv[2]);
-  int c = atoi(argv[3]);
+  int m = max(a, b);
+  for (int i = 3; i < argc; i++) {
+    m = max(m, atoi(argv[i]));
+  }
 
-  printf("%i\n", max(max(a, b), c));
+  printf("%i\n", m);
   return EXIT_SUCCESS;
 }
