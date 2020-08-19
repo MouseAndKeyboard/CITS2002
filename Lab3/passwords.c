@@ -47,13 +47,31 @@ int my_strcmp(char *str_a, char *str_b) {
   }
 }
 
-int main(int argc, char *argv[]) {
-  if (argc != 3) {
-    fprintf(stderr, "Expected 2 arguments, got %i\n", argc - 1);
-    exit(EXIT_FAILURE);
+#define RAND_ARRY_N 10
+
+void print_array(int *arry, int len) {
+  for (int i = 0; i < len; i++) {
+    printf("%i\n", arry[i]);
+  }
+}
+
+void random_array() {
+  // will have junk values
+  int rand_arry[RAND_ARRY_N];
+
+  for (int i = 0; i < RAND_ARRY_N; i++) {
+    rand_arry[i] = rand();
   }
 
-  int length = my_strcmp(argv[1], argv[2]);
-  printf("%i\n", length);
+  print_array(rand_arry, RAND_ARRY_N);
+}
+
+int main(int argc, char *argv[]) {
+  if (argc != 1) {
+    fprintf(stderr, "Expected 0 arguments, got %i\n", argc - 1);
+    exit(EXIT_FAILURE);
+  }
+  random_array();
+
   exit(EXIT_SUCCESS);
 }
