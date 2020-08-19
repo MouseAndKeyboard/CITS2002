@@ -62,12 +62,33 @@ int largest_elem(int *arry, int len) {
     exit(EXIT_FAILURE);
   }
   int max = arry[0];
+  int max_i = 0;
   for (int i = 1; i < len; i++) {
     if (max < arry[i]) {
+      max_i = i;
       max = arry[i];
     }
   }
-  return max;
+  return max_i;
+}
+
+void move_to_start(int *arry, int len, int src) {
+  if (src >= len || src < 0) {
+    fprintf(stderr, "Source index of %i not in array of length %i\n", src, len);
+    exit(EXIT_FAILURE);
+  } else if (len < 1) {
+    fprintf(stderr, "Array must have at least 1 element, got %i\n", len);
+    exit(EXIT_FAILURE);
+  }
+
+  int new = arry[0];
+  arry[0] = arry[src];
+  for (int i = 1; i < src + 1; i++) {
+    int new2 = arry[i];
+    arry[i] = new;
+
+    new = new2;
+  }
 }
 
 void random_array() {
@@ -80,7 +101,8 @@ void random_array() {
   }
 
   int max = largest_elem(rand_arry, RAND_ARRY_N);
-  printf("%i\n", max);
+  move_to_start(rand_arry, RAND_ARRY_N, max);
+  print_array(rand_arry, RAND_ARRY_N);
 }
 
 int main(int argc, char *argv[]) {
