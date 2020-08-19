@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int my_strlen(char *str) {
   int i = 0;
@@ -55,15 +56,31 @@ void print_array(int *arry, int len) {
   }
 }
 
+int largest_elem(int *arry, int len) {
+  if (len < 1) {
+    fprintf(stderr, "No largest element of array length %i\n", len);
+    exit(EXIT_FAILURE);
+  }
+  int max = arry[0];
+  for (int i = 1; i < len; i++) {
+    if (max < arry[i]) {
+      max = arry[i];
+    }
+  }
+  return max;
+}
+
 void random_array() {
   // will have junk values
   int rand_arry[RAND_ARRY_N];
+  srand(time(NULL));
 
   for (int i = 0; i < RAND_ARRY_N; i++) {
     rand_arry[i] = rand();
   }
 
-  print_array(rand_arry, RAND_ARRY_N);
+  int max = largest_elem(rand_arry, RAND_ARRY_N);
+  printf("%i\n", max);
 }
 
 int main(int argc, char *argv[]) {
