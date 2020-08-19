@@ -31,13 +31,29 @@ bool is_safe(char *passwd) {
   return uppercase >= 2 && lowercase >= 2 && numbers >= 2;
 }
 
+int my_strcmp(char *str_a, char *str_b) {
+  int i = 0;
+  while (true) {
+    // this will only happen if they are the same string
+    if (str_a[i] == '\0' && str_b[i] == '\0') {
+      return 0;
+    } else if (str_a[i] < str_b[i]) {
+      return -1;
+    } else if (str_a[i] > str_b[i]) {
+      return 1;
+    }
+
+    i++;
+  }
+}
+
 int main(int argc, char *argv[]) {
-  if (argc != 2) {
-    fprintf(stderr, "Expected 1 argument, got %i\n", argc - 1);
+  if (argc != 3) {
+    fprintf(stderr, "Expected 2 arguments, got %i\n", argc - 1);
     exit(EXIT_FAILURE);
   }
 
-  int length = is_safe(argv[1]);
+  int length = my_strcmp(argv[1], argv[2]);
   printf("%i\n", length);
   exit(EXIT_SUCCESS);
 }
