@@ -12,4 +12,6 @@
  * */
 char *arr_strcat(char dest[], const char src[]);
 
+int ary_strcmp(const char s1[], const char s2[]);
+
 #endif // __ARRAYS_H_
