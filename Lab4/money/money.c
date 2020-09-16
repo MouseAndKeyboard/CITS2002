@@ -10,7 +10,7 @@ void money(int total, int *dollars, int *cents) {
 
 int main(int argc, char *argv[]) {
 
-  int total = 524;
+  int total = atoi(argv[1]);
   int dollars;
   int cents;
 
