@@ -1,0 +1,24 @@
+#+TITLE: Labsheet
+
+* Tasks
+** Money
+Write a function named money that accepts
+- a single integer parameter that represents a total number of cents,
+and breaks the total down into its numbers of dollars and cents.
+
+Your function should calculate the number of:
+- dollars, and
+- the number of "left-over" cents, and
+- provide these to its calling function through its parameters.
+
+For example, a value of 524 should be "returned" as 5 dollars and 24 cents.
+
+Your function should have the prototype:
+#+BEGIN_SRC C
+void money(int total, int *dollars, int *cents);
+#+END_SRC
+
+and called as:
+#+BEGIN_SRC
+money(524, &dollars, &cents);
+#+END_SRC
