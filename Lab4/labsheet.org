@@ -22,3 +22,24 @@ and called as:
 #+BEGIN_SRC
 money(524, &dollars, &cents);
 #+END_SRC
+** str functions
+1. strcat
+2. strcmp
+3. strncmp
+4. strchr
+5. strchr
+6. strpbrk
+7. strstr
+
+Maintain two separate C source files for this task:
+- one file for the array-based versions of each function (named arrays.c),
+- and one file for the pointer-based versions (named pointers.c).
+
+Develop two separate header files:
+- one containing the prototypes of the array-based functions (named arrays.h),
+- and the other containing the prototypes of the pointer-based functions (named pointers.h).
+
+Create a single testing program named stringtest.c.
+- It should contain the only main() function for this question,
+- It tests each of the functions you write.
+- The file stringtest.c should include both of your header files.
