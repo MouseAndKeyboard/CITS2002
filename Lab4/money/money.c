@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void money(int total, int *dollars, int *cents) { return; }
+void money(int total, int *dollars, int *cents) {
+  *dollars = total / 100;
+  *cents = total % 100;
+  return;
+}
 
 int main(int argc, char *argv[]) {
 
