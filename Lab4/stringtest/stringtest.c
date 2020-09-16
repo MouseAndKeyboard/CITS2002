@@ -4,14 +4,15 @@
 #include <string.h>
 
 int test_arr_strcat(void) {
-
   char *dest = (char *)malloc(32);
-
   sprintf(dest, "hello");
-
-  arr_strcat(dest, " world");
+  puts(arr_strcat(dest, " world"));
 
   return 0 != strcmp(dest, "hello world");
 }
 
-int main(void) { test_arr_strcat(); }
+int main(void) {
+  if (test_arr_strcat()) {
+    exit(EXIT_FAILURE);
+  }
+}
