@@ -27,7 +27,7 @@ money(524, &dollars, &cents);
 2. strcmp
 3. strncmp
 4. strchr
-5. strchr
+5. strrchr
 6. strpbrk
 7. strstr
 
