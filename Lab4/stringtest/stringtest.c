@@ -111,10 +111,11 @@ int test_ptr_strchr(void) {
   char *got_3 = ptr_strchr(s1, 'd');
   char *got_4 = ptr_strchr(s1, 'z');
 
-  printf("1) %s %s, 2) %s %s, 3) %s %s\n", des_1, got_1, des_2, got_2, des_3,
-         got_3);
+  printf("1) %s %s, 2) %s %s, 3) %s %s, 4) %p %p\n", des_1, got_1, des_2, got_2,
+         des_3, got_3, des_4, got_4);
 
-  return des_1 != got_1 || des_2 != got_2 || des_3 != got_3 || des_4 != got_4;
+  return strcmp(des_1, got_1) || strcmp(des_2, got_2) || strcmp(des_3, got_3) ||
+         des_4 != NULL || got_4 != NULL;
 }
 
 int main(void) {

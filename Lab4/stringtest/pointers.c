@@ -41,3 +41,13 @@ int ptr_strncmp(const char *s1, const char *s2, size_t n) {
   }
   return 0;
 }
+
+char *ptr_strchr(const char *s, int c) {
+  while (*s) {
+    if (*s == c) {
+      return (char *)s;
+    }
+    s++;
+  }
+  return NULL;
+}

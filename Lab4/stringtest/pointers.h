@@ -6,5 +6,6 @@
 char *ptr_strcat(char *dest, const char *src);
 int ptr_strcmp(const char *s1, const char *s2);
 int ptr_strncmp(const char *s1, const char *s2, size_t n);
+char *ptr_strchr(const char *s, int c);
 
 #endif // __POINTERS_H_
