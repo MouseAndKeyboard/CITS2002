@@ -99,6 +99,24 @@ int test_ary_strchr(void) {
   return des_1 != got_1 || des_2 != got_2 || des_3 != got_3 || des_4 != got_4;
 }
 
+int test_ptr_strchr(void) {
+  char s1[20] = "hello world";
+  char *des_1 = strchr(s1, 'l');
+  char *des_2 = strchr(s1, 'h');
+  char *des_3 = strchr(s1, 'd');
+  char *des_4 = strchr(s1, 'z');
+
+  char *got_1 = ptr_strchr(s1, 'l');
+  char *got_2 = ptr_strchr(s1, 'h');
+  char *got_3 = ptr_strchr(s1, 'd');
+  char *got_4 = ptr_strchr(s1, 'z');
+
+  printf("1) %s %s, 2) %s %s, 3) %s %s\n", des_1, got_1, des_2, got_2, des_3,
+         got_3);
+
+  return des_1 != got_1 || des_2 != got_2 || des_3 != got_3 || des_4 != got_4;
+}
+
 int main(void) {
   if (test_arr_strcat()) {
     exit(EXIT_FAILURE);
@@ -119,6 +137,9 @@ int main(void) {
     exit(EXIT_FAILURE);
   }
   if (test_ary_strchr()) {
+    exit(EXIT_FAILURE);
+  }
+  if (test_ptr_strchr()) {
     exit(EXIT_FAILURE);
   }
 }
