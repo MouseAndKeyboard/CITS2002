@@ -25,10 +25,24 @@ int test_arr_strcmp(void) {
   char s1[30] = "hello world";
   char s2[35] = "hello world";
   int res1 = 0 != ary_strcmp(s1, s2);
-
   char s3[10] = "Te57!ng";
   int desired = strcmp(s3, s1);
   int got = ary_strcmp(s3, s1);
+
+  printf("%i %i %i\n", res1, got, desired);
+
+  return res1 || got != desired;
+}
+
+int test_ptr_strcmp(void) {
+  char s1[30] = "hello world";
+  char s2[35] = "hello world";
+  int res1 = 0 != ptr_strcmp(s1, s2);
+  char s3[10] = "Te57!ng";
+  int desired = strcmp(s3, s1);
+  int got = ptr_strcmp(s3, s1);
+
+  printf("%i %i %i\n", res1, got, desired);
 
   return res1 || got != desired;
 }
@@ -41,6 +55,9 @@ int main(void) {
     exit(EXIT_FAILURE);
   }
   if (test_arr_strcmp()) {
+    exit(EXIT_FAILURE);
+  }
+  if (test_ptr_strcmp()) {
     exit(EXIT_FAILURE);
   }
 }

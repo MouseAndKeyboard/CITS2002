@@ -22,3 +22,16 @@ char *arr_strcat(char dest[], const char src[]) {
 
   return dest;
 }
+
+int ary_strcmp(const char s1[], const char s2[]) {
+  int index = -1;
+  char s1_c;
+  char s2_c;
+  do {
+    index++;
+    s1_c = s1[index];
+    s2_c = s2[index];
+  } while (s1_c != '\0' && s2_c != '\0' && s1_c == s2_c);
+
+  return s1_c - s2_c;
+}
