@@ -93,8 +93,8 @@ int test_ary_strchr(void) {
   char *got_3 = ary_strchr(s1, 'd');
   char *got_4 = ary_strchr(s1, 'z');
 
-  printf("1) %s %s, 2) %s %s, 3) %s %s, 4) %s %s", des_1, got_1, des_2, got_2,
-         des_3, got_3, des_4, got_4);
+  printf("1) %s %s, 2) %s %s, 3) %s %s\n", des_1, got_1, des_2, got_2, des_3,
+         got_3);
 
   return des_1 != got_1 || des_2 != got_2 || des_3 != got_3 || des_4 != got_4;
 }

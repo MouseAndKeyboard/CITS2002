@@ -48,3 +48,14 @@ int ary_strncmp(const char s1[], const char s2[], size_t n) {
   }
   return 0;
 }
+
+char *ary_strchr(const char s[], int c) {
+  for (int i = 0;; i++) {
+    if (s[i] == c) {
+      return (char *)&s[i];
+    }
+    if (s[i] == '\0') {
+      return NULL;
+    }
+  }
+}
