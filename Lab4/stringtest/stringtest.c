@@ -97,4 +97,7 @@ int main(void) {
   if (test_ary_strncmp()) {
     exit(EXIT_FAILURE);
   }
+  if (test_ptr_strncmp()) {
+    exit(EXIT_FAILURE);
+  }
 }
