@@ -1,6 +1,8 @@
 #ifndef __ARRAYS_H_
 #define __ARRAYS_H_
 
+#include <unistd.h>
+
 /* Appends the src string to the dest string,
  * overwriting the terminating null byte ('\0')
  * at the end of dest, and then adds a terminating
@@ -11,7 +13,7 @@
  * behavior  is  unpredictable
  * */
 char *arr_strcat(char dest[], const char src[]);
-
 int ary_strcmp(const char s1[], const char s2[]);
+int ary_strncmp(const char s1[], const char s2[], size_t n);
 
 #endif // __ARRAYS_H_

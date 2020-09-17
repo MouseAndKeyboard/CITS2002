@@ -35,3 +35,16 @@ int ary_strcmp(const char s1[], const char s2[]) {
 
   return s1_c - s2_c;
 }
+
+int ary_strncmp(const char s1[], const char s2[], size_t n) {
+  char s1_c;
+  char s2_c;
+  for (int i = 0; i < n; i++) {
+    s1_c = s1[i];
+    s2_c = s2[i];
+    if (s1_c == '\0' || s2_c == '\0' || s1_c != s2_c) {
+      return s1_c - s2_c;
+    }
+  }
+  return 0;
+}

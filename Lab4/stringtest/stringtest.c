@@ -77,4 +77,7 @@ int main(void) {
   if (test_ptr_strcmp()) {
     exit(EXIT_FAILURE);
   }
+  if (test_ary_strncmp()) {
+    exit(EXIT_FAILURE);
+  }
 }
