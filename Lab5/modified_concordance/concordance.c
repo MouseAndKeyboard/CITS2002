@@ -15,8 +15,13 @@ extern char *strdup(const char *str);
 //  EACH OF WHICH POINTS TO A char (AND ASSUMED TO BE THE START OF A STRING)
 //  c.f.   https://i.stack.imgur.com/64Tgw.png
 char **words = NULL;
-
 int nwords = 0;
+
+struct {
+  char *word;
+  int frequency;
+} * word_counter;
+int n_unique_words = 0;
 
 //  ITERATE THROUGH OUR CONCORDANCE, PRINTING EACH WORD (ONCE)
 void print_words(void) {
@@ -45,6 +50,23 @@ void add_word(char newword[]) {
   ++nwords;
 }
 
+// INSERTS WORD IF NOT EXISTING, OTHERWISE INCREMENTS
+void upsert_word(char *newword) {
+  for (int w = 0; w < n_unique_words; ++w) {
+    if (0 == strcmp(newword, word_counter[w].word)) {
+      ++word_counter[w].frequency;
+      return;
+    }
+  }
+  word_counter =
+      reallocarray(word_counter, n_unique_words, sizeof(word_counter[0]));
+  word_counter[n_unique_words].word = strdup(newword);
+  ++n_unique_words;
+  return;
+}
+
+int get_word_count(char *str, int count) {}
+
 //  BREAK A LINE OF TEXT INTO WORDS (SEQUENCES OF ALPHABETIC CHARACTERS)
 void find_words(char *str) {
   int s = 0;
@@ -66,8 +88,8 @@ void find_words(char *str) {
     //  DID WE COLLECT ANY CHARACTERS?
     if (w > 0) {
       *(word + w) = '\0'; // terminate our word (make it a string)
-      printf("adding word %s\n", word);
       add_word(word);
+      upsert_word(word);
     }
 
     //  SKIP ALL NON-ALPHABETIC CHARACTERS, ENSURE WE DON'T GO PAST END OF
