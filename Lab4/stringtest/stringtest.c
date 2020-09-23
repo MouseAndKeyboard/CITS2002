@@ -118,6 +118,8 @@ int test_ptr_strchr(void) {
          des_4 != NULL || got_4 != NULL;
 }
 
+int test_ary_strrchr(void) {}
+
 int main(void) {
   if (test_arr_strcat()) {
     exit(EXIT_FAILURE);
@@ -141,6 +143,9 @@ int main(void) {
     exit(EXIT_FAILURE);
   }
   if (test_ptr_strchr()) {
+    exit(EXIT_FAILURE);
+  }
+  if (test_ary_strrchr()) {
     exit(EXIT_FAILURE);
   }
 }
