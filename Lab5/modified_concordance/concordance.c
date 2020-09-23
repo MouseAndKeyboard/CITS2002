@@ -51,31 +51,30 @@ void find_words(char *str) {
 
   //  PROCESS THE LINE (A STRING) UNTIL WE REACH THE TERMINATING NULL-BYTE
   while (*str != '\0') {
-    char *word = malloc(BUFSIZ);
+    char wrd[BUFSIZ];
+    char *word = wrd;
     int w = 0;
 
     //  COLLECT SEQUENCES OF ALPHABETIC CHARACTER, COPYING THEM INTO word
     while (isalpha(*str)) {
-      *word = *str;
+      *(word + w) = *str;
       ++str;
-      ++word;
       ++w;
       //  WE COULD ALSO WRITE:        word[w++] = str[s++];
     }
 
     //  DID WE COLLECT ANY CHARACTERS?
     if (w > 0) {
-      *word = '\0'; // terminate our word (make it a string)
+      *(word + w) = '\0'; // terminate our word (make it a string)
+      printf("adding word %s\n", word);
       add_word(word);
     }
 
     //  SKIP ALL NON-ALPHABETIC CHARACTERS, ENSURE WE DON'T GO PAST END OF
     //  STRING
     while (*str != '\0' && !isalpha(*str)) {
-      ++s;
+      ++str;
     }
-
-    free(word);
   }
 }
 
